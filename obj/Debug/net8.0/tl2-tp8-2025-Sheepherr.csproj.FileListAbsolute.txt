@@ -1,0 +1,8 @@
+C:\Users\Alumno\Documents\clones\tl2-tp8-2025-Sheepherr\obj\Debug\net8.0\tl2-tp8-2025-Sheepherr.csproj.AssemblyReference.cache
+C:\Users\Alumno\Documents\clones\tl2-tp8-2025-Sheepherr\obj\Debug\net8.0\tl2-tp8-2025-Sheepherr.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Alumno\Documents\clones\tl2-tp8-2025-Sheepherr\obj\Debug\net8.0\tl2-tp8-2025-Sheepherr.AssemblyInfoInputs.cache
+C:\Users\Alumno\Documents\clones\tl2-tp8-2025-Sheepherr\obj\Debug\net8.0\tl2-tp8-2025-Sheepherr.AssemblyInfo.cs
+C:\Users\Alumno\Documents\clones\tl2-tp8-2025-Sheepherr\obj\Debug\net8.0\tl2-tp8-2025-Sheepherr.csproj.CoreCompileInputs.cache
+C:\Users\Alumno\Documents\clones\tl2-tp8-2025-Sheepherr\obj\Debug\net8.0\tl2-tp8-2025-Sheepherr.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Alumno\Documents\clones\tl2-tp8-2025-Sheepherr\obj\Debug\net8.0\tl2-tp8-2025-Sheepherr.RazorAssemblyInfo.cache
+C:\Users\Alumno\Documents\clones\tl2-tp8-2025-Sheepherr\obj\Debug\net8.0\tl2-tp8-2025-Sheepherr.RazorAssemblyInfo.cs

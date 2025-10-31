@@ -1,0 +1,9 @@
+@Model.Productos
+
+<ul>
+    @foreach (var producto in Productos)
+    {
+        <li>@producto.descripcion - @producto.precio</li>
+    }
+
+</ul>
