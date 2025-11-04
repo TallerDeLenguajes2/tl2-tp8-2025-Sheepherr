@@ -1,8 +1,7 @@
 namespace ProductosRepository;
 
 using Microsoft.Data.Sqlite;
-
-using Productos;
+using ClaseMVC.Models;
 using SQLitePCL;
 
 public class ProductosRepository

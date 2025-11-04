@@ -1,4 +1,4 @@
-namespace Productos;
+namespace ClaseMVC.Models;
 public class Productos
 {
     public int idProducto { get; set; }

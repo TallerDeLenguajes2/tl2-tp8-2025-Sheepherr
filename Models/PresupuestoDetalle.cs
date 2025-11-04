@@ -1,6 +1,5 @@
-namespace PresupuestoDetalle;
+namespace ClaseMVC.Models;
 
-using Productos;
 public class PresupuestoDetalle
 {
     public Productos producto { get; set; }

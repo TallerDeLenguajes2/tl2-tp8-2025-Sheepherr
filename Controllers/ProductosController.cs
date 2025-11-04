@@ -1,24 +1,26 @@
+namespace ProductosController;
+using tl2_tp8_2025_Sheepherr.Models;
+using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using ClaseMVC.Models;
 using ProductosRepository;
-using Productos;
-namespace ProductosController;
+
 public class ProductosController: Controller
 {
     private readonly ILogger<ProductosController> _logger;
     private readonly ProductosRepository _productoRepository;
 
-    public ProductosController(Ilogger<ProductosController> logger)
+    public ProductosController(ILogger<ProductosController> logger, ProductosRepository productoRepository)
     {
         _logger = logger;
+        _productoRepository = productoRepository;
     }
     
-
     [HttpGet]
     public IActionResult Index()
     {
-        List<Producto> productos = productoRepository.GetAllProductos();
+        var productos = _productoRepository.GetAllProductos();
         return View(productos);
     }
 }

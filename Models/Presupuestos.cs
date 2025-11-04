@@ -1,6 +1,5 @@
-namespace Presupuestos;
+namespace ClaseMVC.Models;
 
-using PresupuestoDetalle;
 public class Presupuestos
 {
     public int IdPresupuesto { get; set; }

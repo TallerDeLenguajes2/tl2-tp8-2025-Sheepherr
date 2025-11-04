@@ -9,43 +9,43 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = tl2_tp8_2025_Sheepherr
 build_property.RootNamespace = tl2_tp8_2025_Sheepherr
-build_property.ProjectDir = C:\Users\Alumno\Documents\clones\tl2-tp8-2025-Sheepherr\
+build_property.ProjectDir = D:\FACULTAD\2do_anio\Taller2\tl2-tp8-2025-Sheepherr\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Alumno\Documents\clones\tl2-tp8-2025-Sheepherr
+build_property.MSBuildProjectDirectory = D:\FACULTAD\2do_anio\Taller2\tl2-tp8-2025-Sheepherr
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Alumno/Documents/clones/tl2-tp8-2025-Sheepherr/Views/Home/Index.cshtml]
+[D:/FACULTAD/2do_anio/Taller2/tl2-tp8-2025-Sheepherr/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Alumno/Documents/clones/tl2-tp8-2025-Sheepherr/Views/Home/Privacy.cshtml]
+[D:/FACULTAD/2do_anio/Taller2/tl2-tp8-2025-Sheepherr/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Alumno/Documents/clones/tl2-tp8-2025-Sheepherr/Views/Productos/index.cshtml]
+[D:/FACULTAD/2do_anio/Taller2/tl2-tp8-2025-Sheepherr/Views/Productos/index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdG9zXGluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Alumno/Documents/clones/tl2-tp8-2025-Sheepherr/Views/Shared/Error.cshtml]
+[D:/FACULTAD/2do_anio/Taller2/tl2-tp8-2025-Sheepherr/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Alumno/Documents/clones/tl2-tp8-2025-Sheepherr/Views/Shared/_ValidationScriptsPartial.cshtml]
+[D:/FACULTAD/2do_anio/Taller2/tl2-tp8-2025-Sheepherr/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Alumno/Documents/clones/tl2-tp8-2025-Sheepherr/Views/_ViewImports.cshtml]
+[D:/FACULTAD/2do_anio/Taller2/tl2-tp8-2025-Sheepherr/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Alumno/Documents/clones/tl2-tp8-2025-Sheepherr/Views/_ViewStart.cshtml]
+[D:/FACULTAD/2do_anio/Taller2/tl2-tp8-2025-Sheepherr/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Alumno/Documents/clones/tl2-tp8-2025-Sheepherr/Views/Shared/_Layout.cshtml]
+[D:/FACULTAD/2do_anio/Taller2/tl2-tp8-2025-Sheepherr/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-2imz7xy9ls
