@@ -1,0 +1,32 @@
+@model ClaseMVC.Models.Productos
+
+@{
+    ViewData["Title"] = "Crear Producto";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Crear nuevo producto</h4>
+        </div>
+
+        <div class="card-body">
+            <form asp-action="Create" method="post">
+                <div class="mb-3">
+                    <label asp-for="descripcion" class="form-label">Descripción</label>
+                    <input asp-for="descripcion" class="form-control" placeholder="Ingrese la descripción del producto" />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="precio" class="form-label">Precio</label>
+                    <input asp-for="precio" class="form-control" type="number" placeholder="Ingrese el precio" />
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <a asp-action="Index" class="btn btn-secondary">Volver</a>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

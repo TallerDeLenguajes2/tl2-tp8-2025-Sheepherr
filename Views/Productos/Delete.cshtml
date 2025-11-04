@@ -1,0 +1,38 @@
+@model ClaseMVC.Models.Productos
+@{
+    ViewData["Title"] = "Eliminar producto";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg border-danger">
+        <div class="card-header bg-danger text-white">
+            <h3>Eliminar producto</h3>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">¿Estás seguro de que deseas eliminar este producto?</h5>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-3">ID:</dt>
+                <dd class="col-sm-9">@Model.idProducto</dd>
+
+                <dt class="col-sm-3">Descripción:</dt>
+                <dd class="col-sm-9">@Model.descripcion</dd>
+
+                <dt class="col-sm-3">Precio:</dt>
+                <dd class="col-sm-9">$@Model.precio</dd>
+            </dl>
+
+            <form asp-action="Delete" method="post">
+                <input type="hidden" asp-for="idProducto" />
+                <div class="mt-4 d-flex justify-content-between">
+                    <a asp-action="Index" class="btn btn-secondary">
+                        Cancelar
+                    </a>
+                    <button type="submit" class="btn btn-danger">
+                        Eliminar definitivamente
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

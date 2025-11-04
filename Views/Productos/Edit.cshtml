@@ -1,0 +1,34 @@
+@model ClaseMVC.Models.Productos
+
+@{
+    ViewData["Title"] = "Editar Producto";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-header bg-warning text-dark">
+            <h4 class="mb-0">Editar producto</h4>
+        </div>
+
+        <div class="card-body">
+            <form asp-action="Edit" method="post">
+                <input type="hidden" asp-for="idProducto" />
+
+                <div class="mb-3">
+                    <label asp-for="descripcion" class="form-label">Descripción</label>
+                    <input asp-for="descripcion" class="form-control" placeholder="Ingrese la descripción del producto" />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="precio" class="form-label">Precio</label>
+                    <input asp-for="precio" class="form-control" type="number" placeholder="Ingrese el precio" />
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <a asp-action="Index" class="btn btn-secondary">Volver</a>
+                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

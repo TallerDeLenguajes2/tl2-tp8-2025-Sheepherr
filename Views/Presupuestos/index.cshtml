@@ -1,0 +1,44 @@
+@model List<ClaseMVC.Models.Presupuestos>
+
+@{
+    ViewData["Title"] = "Listado de Presupuestos";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="mb-0 text-primary">Listado de Presupuestos</h2>
+        <a asp-controller="Presupuestos" asp-action="Create" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Agregar Presupuesto
+        </a>
+    </div>
+
+    <div class="row">
+        @if (Model != null && Model.Any())
+        {
+            @foreach (var p in Model)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm h-100 border-0">
+                        <div class="card-body">
+                            <h5 class="card-title text-dark">Destinatario: @p.nombreDestinatario</h5>
+                            <p class="card-text text-muted mb-2">Fecha de creación: @p.FechaCreacion</p>
+                            <p class="card-text text-secondary">ID Presupuesto: @p.IdPresupuesto</p>
+
+                            <div class="text-end">
+                                <a asp-controller="Presupuestos" asp-action="Details" asp-route-id="@p.IdPresupuesto" class="btn btn-outline-primary btn-sm">
+                                    <i class="bi bi-eye"></i> Ver Detalles
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="alert alert-info" role="alert">
+                No hay presupuestos cargados actualmente.
+            </div>
+        }
+    </div>
+</div>

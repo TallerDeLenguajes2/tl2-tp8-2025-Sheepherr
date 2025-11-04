@@ -57,7 +57,7 @@ public class PresupuestosRepository
                 }
             }
 
-            query = "SELECT p.idProducto AS idProducto, p.Descripcion AS Descripcion, p.Precio AS Precio, d.Cantidad AS Cantidad FROM PresupuestosDetalle d INNER JOIN Productos p ON d.idProducto = p.idProducto WHERE d.idPresupuesto = @id";
+            /*query = "SELECT p.idProducto AS idProducto, p.Descripcion AS Descripcion, p.Precio AS Precio, d.Cantidad AS Cantidad FROM PresupuestosDetalle d INNER JOIN Productos p ON d.idProducto = p.idProducto WHERE d.idPresupuesto = @id";
             foreach (var pres in presupuestos)
             {
                 using var comanDet = new SqliteCommand(query, conexion);
@@ -84,7 +84,7 @@ public class PresupuestosRepository
                             pres.detalle.Add(pDetalle);
                         }
                     }
-            }
+            }*/
         
         return presupuestos;
     }

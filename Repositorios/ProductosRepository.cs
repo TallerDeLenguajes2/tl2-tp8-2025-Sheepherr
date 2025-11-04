@@ -24,9 +24,10 @@ public class ProductosRepository
     {
         using var conexion = new SqliteConnection(cadenaConexion);
         conexion.Open();
-        string query = "UPDATE Productos SET Descripcion = @Descripcion WHERE idProducto = @idProducto";
+        string query = "UPDATE Productos SET Descripcion = @Descripcion, Precio = @Precio WHERE idProducto = @idProducto";
         using var comando = new SqliteCommand(query, conexion);
         comando.Parameters.Add(new SqliteParameter("@Descripcion", producto.descripcion));
+        comando.Parameters.Add(new SqliteParameter("@Precio", producto.precio));
         comando.Parameters.Add(new SqliteParameter("@idProducto", id));
         comando.ExecuteNonQuery();
     }
@@ -86,7 +87,7 @@ public class ProductosRepository
     {
         using var conexion = new SqliteConnection(cadenaConexion);
         conexion.Open();
-        string query = "DELETE FROM Producto WHERE idProducto = @id";
+        string query = "DELETE FROM Productos WHERE idProducto = @id";
         using var comando = new SqliteCommand(query,conexion);
 
         comando.Parameters.Add(new SqliteParameter("@id", id));
