@@ -9,10 +9,11 @@ public class ProductosController: Controller
     private readonly ILogger<ProductosController> _logger;
     private readonly ProductosRepository _productoRepository;
 
-    public ProductosController(ILogger<ProductosController> logger, ProductosRepository productoRepository)
+    public ProductosController(ILogger<ProductosController> logger)
     {
         _logger = logger;
-        _productoRepository = productoRepository;
+        //_productoRepository = productoRepository;
+        _productoRepository = new ProductosRepository();
     }
     
     [HttpGet]
