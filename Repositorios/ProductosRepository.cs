@@ -1,23 +1,26 @@
-namespace ProductosRepository;
+namespace MVC.Repositorios;
 
 using Microsoft.Data.Sqlite;
 using ClaseMVC.Models;
 using SQLitePCL;
+using MVC.Interfaces;
 
-public class ProductosRepository
+
+
+public class ProductosRepository : IProductosRepository
 {
     private string cadenaConexion = "Data Source= Db/Tienda.db";
-    
-    public void InsertProducto (Productos producto)
+
+    public void InsertProducto(Productos producto)
     {
         using var conexion = new SqliteConnection(cadenaConexion);
         conexion.Open();
         string query = "INSERT INTO Productos (Descripcion, Precio) VALUES (@Descripcion, @Precio)";
-        using var comando = new SqliteCommand(query,conexion);
+        using var comando = new SqliteCommand(query, conexion);
 
         comando.Parameters.Add(new SqliteParameter("@Descripcion", producto.descripcion));
         comando.Parameters.Add(new SqliteParameter("@Precio", producto.precio));
-        
+
         comando.ExecuteNonQuery();
     }
     public void UpdateProducto(int id, Productos producto)
@@ -53,15 +56,15 @@ public class ProductosRepository
         }
         return productos;
     }
-    public Productos GetbyIdProducto (int id)
+    public Productos GetbyIdProducto(int id)
     {
         using var conexion = new SqliteConnection(cadenaConexion);
         conexion.Open();
-        
+
         string query = "SELECT idProducto, Descripcion, Precio FROM Productos WHERE idProducto = @id";
-        
+
         using var comando = new SqliteCommand(query, conexion);
-        
+
         comando.Parameters.Add(new SqliteParameter("@id", id));
 
         using var reader = comando.ExecuteReader();
@@ -74,24 +77,24 @@ public class ProductosRepository
                 precio = Convert.ToInt32(reader["Precio"])
             };
             return producto;
-            
-        }  
+
+        }
         else
         {
             return null;
         }
-        
+
 
     }
-    public void DeleteProducto (int id)
+    public void DeleteProducto(int id)
     {
         using var conexion = new SqliteConnection(cadenaConexion);
         conexion.Open();
         string query = "DELETE FROM Productos WHERE idProducto = @id";
-        using var comando = new SqliteCommand(query,conexion);
+        using var comando = new SqliteCommand(query, conexion);
 
         comando.Parameters.Add(new SqliteParameter("@id", id));
         comando.ExecuteNonQuery();
     }
-    
+
 }

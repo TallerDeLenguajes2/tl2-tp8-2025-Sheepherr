@@ -2,7 +2,7 @@ namespace ProductosController;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Mvc;
 using ClaseMVC.Models;
-using ProductosRepository;
+using MVC.Repositorios;
 
 public class ProductosController: Controller
 {

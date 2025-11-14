@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using ClaseMVC.Models;
-using PresupuestosRepository;
+using MVC.Repositorios;
 
 public class PresupuestosController: Controller
 {

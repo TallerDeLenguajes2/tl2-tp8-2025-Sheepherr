@@ -1,9 +1,25 @@
+using Microsoft.AspNetCore.Http;
+using MVC.Interfaces;
+using MVC.Repositorios;
+using MVC.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-//builder.Services.AddScoped<ProductosRepository.ProductosRepository>();
-//builder.Services.AddScoped<PresupuestosRepository.PresupuestosRepository>();
+// Servicios de Sesión y Acceso a Contexto (CLAVE para la autenticación)
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddSession(options =>
+{
+ options.IdleTimeout = TimeSpan.FromMinutes(30);
+ options.Cookie.HttpOnly = true;
+ options.Cookie.IsEssential = true;
+});
+// Registro de la Inyección de Dependencia (TODOS AddScoped)
+builder.Services.AddScoped<IProductosRepository, ProductosRepository>();
+builder.Services.AddScoped<IPresupuestosRepository, PresupuestosRepository>();
+builder.Services.AddScoped<IUserRepository, UsuarioRepository>();
+builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 
 var app = builder.Build();
 
@@ -15,8 +31,11 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseSession();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+
 
 app.UseRouting();
 
