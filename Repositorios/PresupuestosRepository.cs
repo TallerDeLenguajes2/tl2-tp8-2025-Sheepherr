@@ -37,7 +37,7 @@ public class PresupuestosRepository : IPresupuestosRepository
     public List<Presupuestos> GetAllPresupuestos()
     {
         List<Presupuestos> presupuestos = new List<Presupuestos>();
-        string query = "SELECT * FROM Presupuestos";
+        string query = "SELECT * FROM Presupuestos WHERE Activo = 1";
         using var conexion = new SqliteConnection(cadenaConexion);
         conexion.Open();
 
@@ -144,7 +144,7 @@ public class PresupuestosRepository : IPresupuestosRepository
         using var conexion = new SqliteConnection(cadenaConexion);
         conexion.Open();
 
-        string query = "SELECT p.NombreDestinatario AS NombreDestinatario, p.FechaCreacion AS FechaCreacion, pr.Descripcion AS Descripcion, d.Cantidad AS Cantidad, pr.Precio AS Precio, pr.idProducto AS idProducto FROM Presupuestos p INNER JOIN PresupuestosDetalle d ON p.idPresupuesto = d.idPresupuesto INNER JOIN Productos pr ON d.idProducto = pr.idProducto WHERE p.idPresupuesto = @id";
+        string query = "SELECT p.NombreDestinatario AS NombreDestinatario, p.FechaCreacion AS FechaCreacion, pr.Descripcion AS Descripcion, d.Cantidad AS Cantidad, pr.Precio AS Precio, pr.idProducto AS idProducto FROM Presupuestos p LEFT JOIN PresupuestosDetalle d ON p.idPresupuesto = d.idPresupuesto LEFT JOIN Productos pr ON d.idProducto = pr.idProducto WHERE p.idPresupuesto = @id";
 
         using var comando = new SqliteCommand(query, conexion);
 
@@ -161,6 +161,10 @@ public class PresupuestosRepository : IPresupuestosRepository
                 presupuesto.FechaCreacion = reader["FechaCreacion"].ToString();
                 presupuesto.detalle = new List<PresupuestoDetalle>();
             }
+            
+            if (reader["idProducto"] == DBNull.Value)
+            continue;
+
             var producto = new Productos
             {
                 idProducto = Convert.ToInt32(reader["idProducto"]),
@@ -182,15 +186,8 @@ public class PresupuestosRepository : IPresupuestosRepository
     {
         using var conexion = new SqliteConnection(cadenaConexion);
         conexion.Open();
-        string query = "DELETE FROM Presupuestos WHERE idPresupuesto = @id";
+        string query = "UPDATE Presupuestos SET Activo = 0 WHERE idPresupuesto = @id";
 
-        using (var comando = new SqliteCommand(query, conexion))
-        {
-            comando.Parameters.Add(new SqliteParameter("@id", id));
-            comando.ExecuteNonQuery();
-        }
-
-        query = "DELETE FROM PresupuestosDetalle WHERE idPresupuesto = @id";
         using (var comando = new SqliteCommand(query, conexion))
         {
             comando.Parameters.Add(new SqliteParameter("@id", id));

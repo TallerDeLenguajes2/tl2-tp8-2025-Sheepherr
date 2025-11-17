@@ -19,7 +19,7 @@ builder.Services.AddSession(options =>
 builder.Services.AddScoped<IProductosRepository, ProductosRepository>();
 builder.Services.AddScoped<IPresupuestosRepository, PresupuestosRepository>();
 builder.Services.AddScoped<IUserRepository, UsuarioRepository>();
-builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
+//builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 
 var app = builder.Build();
 
@@ -30,7 +30,7 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-
+// usesession va antes de todo
 app.UseSession();
 app.UseHttpsRedirection();
 app.UseStaticFiles();

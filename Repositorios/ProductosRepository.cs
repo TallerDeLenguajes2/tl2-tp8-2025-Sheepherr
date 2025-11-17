@@ -37,7 +37,7 @@ public class ProductosRepository : IProductosRepository
     public List<Productos> GetAllProductos()
     {
         List<Productos> productos = [];
-        string query = "SELECT * FROM Productos";
+        string query = "SELECT * FROM Productos WHERE Activo = 1";
         using var conexion = new SqliteConnection(cadenaConexion);
         conexion.Open();
         var command = new SqliteCommand(query, conexion);
@@ -90,7 +90,7 @@ public class ProductosRepository : IProductosRepository
     {
         using var conexion = new SqliteConnection(cadenaConexion);
         conexion.Open();
-        string query = "DELETE FROM Productos WHERE idProducto = @id";
+        string query = "UPDATE Productos SET Activo = 0 WHERE idProducto = @id";
         using var comando = new SqliteCommand(query, conexion);
 
         comando.Parameters.Add(new SqliteParameter("@id", id));

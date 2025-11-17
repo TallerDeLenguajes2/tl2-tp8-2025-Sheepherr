@@ -1,9 +1,9 @@
 namespace MVC.Interfaces;
 public interface IAuthenticationService
 {
- bool Login(string username, string password);
- void Logout();
- bool IsAuthenticated();
+ public bool Login(string username, string password);
+ public void Logout();
+ public bool IsAuthenticated();
  // Verifica si el usuario actual tiene el rol requerido (ej. "Administrador").
- bool HasAccessLevel(string requiredAccessLevel);
+ public bool HasAccessLevel(string requiredAccessLevel);
 }

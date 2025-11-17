@@ -1,0 +1,66 @@
+    @model ClaseMVC.Models.Presupuestos
+
+<div class="container mt-4">
+    <div class="card border-danger shadow">
+        <div class="card-header bg-danger text-white">
+            <h3 class="m-0">Eliminar Presupuesto</h3>
+        </div>
+
+        <div class="card-body">
+
+            <h5 class="text-danger">¿Estás seguro que deseas eliminar este presupuesto?</h5>
+
+            <hr />
+
+            <dl class="row">
+                <dt class="col-sm-3">Destinatario:</dt>
+                <dd class="col-sm-9">@Model.nombreDestinatario</dd>
+
+                <dt class="col-sm-3">Fecha de creación:</dt>
+                <dd class="col-sm-9">@Model.FechaCreacion</dd>
+            </dl>
+
+            <hr />
+
+            @if (Model.detalle != null && Model.detalle.Count > 0)
+            {
+                <h5>Productos del presupuesto</h5>
+
+                <table class="table table-bordered mt-3">
+                    <thead class="table-danger">
+                        <tr>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                            <th>Precio Unitario</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.detalle)
+                        {
+                            <tr>
+                                <td>@item.producto.descripcion</td>
+                                <td>@item.cantidad</td>
+                                <td>$@item.producto.precio</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <div class="alert alert-warning">
+                    Este presupuesto no tiene productos asociados.
+                </div>
+            }
+
+            <form asp-action="Delete" method="post" class="mt-3">
+                <input type="hidden" asp-for="IdPresupuesto" />
+
+                <div class="d-flex justify-content-between">
+                    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

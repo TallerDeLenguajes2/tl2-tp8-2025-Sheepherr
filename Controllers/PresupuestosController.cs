@@ -27,9 +27,14 @@ public class PresupuestosController: Controller
     public IActionResult Details(int id)
     {
         var presupuesto = _presupuestosRepository.GetbyIdPresupuesto(id);
+        
 
-        if (presupuesto == null)
-            return NotFound();
+        if (presupuesto.detalle == null)
+        {
+            TempData["Mensaje"] = "El presupuesto seleccionado no tiene productos asociados.";
+            return RedirectToAction("Index");
+        }
+            
 
         return View(presupuesto);
 
@@ -59,5 +64,17 @@ public class PresupuestosController: Controller
     {
         _presupuestosRepository.InsertPresupuesto(p);
         return View();
+    }
+    [HttpGet]
+    public IActionResult Delete(int id)
+    {
+        var presupuesto = _presupuestosRepository.GetbyIdPresupuesto(id);
+        return View(presupuesto);
+    }
+    [HttpPost, ActionName("Delete")]
+    public IActionResult DeleteConfirmed(int id)
+    {
+        _presupuestosRepository.DeletePresupuesto(id);
+        return RedirectToAction("Index");
     }
 }

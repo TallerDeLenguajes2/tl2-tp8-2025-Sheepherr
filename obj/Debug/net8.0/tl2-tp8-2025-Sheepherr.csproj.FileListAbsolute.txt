@@ -25,7 +25,6 @@ D:\FACULTAD\2do_anio\Taller2\tl2-tp8-2025-Sheepherr\bin\Debug\net8.0\runtimes\li
 D:\FACULTAD\2do_anio\Taller2\tl2-tp8-2025-Sheepherr\bin\Debug\net8.0\runtimes\linux-mips64\native\libe_sqlite3.so
 D:\FACULTAD\2do_anio\Taller2\tl2-tp8-2025-Sheepherr\bin\Debug\net8.0\runtimes\linux-musl-arm\native\libe_sqlite3.so
 D:\FACULTAD\2do_anio\Taller2\tl2-tp8-2025-Sheepherr\bin\Debug\net8.0\runtimes\linux-musl-arm64\native\libe_sqlite3.so
-D:\FACULTAD\2do_anio\Taller2\tl2-tp8-2025-Sheepherr\bin\Debug\net8.0\runtimes\linux-musl-s390x\native\libe_sqlite3.so
 D:\FACULTAD\2do_anio\Taller2\tl2-tp8-2025-Sheepherr\bin\Debug\net8.0\runtimes\linux-musl-x64\native\libe_sqlite3.so
 D:\FACULTAD\2do_anio\Taller2\tl2-tp8-2025-Sheepherr\bin\Debug\net8.0\runtimes\linux-ppc64le\native\libe_sqlite3.so
 D:\FACULTAD\2do_anio\Taller2\tl2-tp8-2025-Sheepherr\bin\Debug\net8.0\runtimes\linux-s390x\native\libe_sqlite3.so
