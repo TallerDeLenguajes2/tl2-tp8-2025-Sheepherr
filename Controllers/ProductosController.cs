@@ -1,26 +1,20 @@
 namespace ProductosController;
-using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Mvc;
 using ClaseMVC.Models;
 using MVC.Repositorios;
+using SistemaVentas.Web.ViewModels;
+using System.ComponentModel;
 
 public class ProductosController: Controller
 {
-    private readonly ILogger<ProductosController> _logger;
-    private readonly ProductosRepository _productoRepository;
-
-    public ProductosController(ILogger<ProductosController> logger)
-    {
-        _logger = logger;
-        //_productoRepository = productoRepository;
-        _productoRepository = new ProductosRepository();
-    }
+    private readonly ProductosRepository _productoRepository = new ProductosRepository();
     
     [HttpGet]
     public IActionResult Index()
     {
-        var productos = _productoRepository.GetAllProductos();
-        return View(productos);
+        var productosViewModel = _productoRepository.GetAllProductos().Select(p => new ProductosViewModel(p.idProducto,p.descripcion,p.precio)).ToList();
+        
+        return View(productosViewModel);
     }
 
     [HttpGet]
@@ -30,31 +24,55 @@ public class ProductosController: Controller
     }
 
     [HttpPost]
-    public IActionResult Create(Productos producto)
-    {
-        _productoRepository.InsertProducto(producto);
+    public IActionResult Create(ProductosViewModel productoVM)
+    {   
+        if (!ModelState.IsValid)
+        {
+            return View(productoVM);
+        }
+        var nuevoProducto = new Productos
+        {
+            descripcion = productoVM.descripcion,
+            precio = productoVM.precio
+        };
+        _productoRepository.InsertProducto(nuevoProducto);
         return RedirectToAction("Index");
     }
 
     [HttpGet]
     public IActionResult Edit(int id)
     {
-        var producto = _productoRepository.GetbyIdProducto(id);
-        return View(producto);
+        var p = _productoRepository.GetbyIdProducto(id);
+        var productoViewModel = new ProductosViewModel(p.idProducto,p.descripcion,p.precio);
+        return View(productoViewModel);
     }
 
     [HttpPost]
-    public IActionResult Edit(int id, Productos producto)
+    public IActionResult Edit(int id,ProductosViewModel productoVM)
     {
-        _productoRepository.UpdateProducto(id, producto);
+        if(id != productoVM.idProducto) return NotFound();
+        
+        if (!ModelState.IsValid)
+        {
+            return NotFound(productoVM);
+        }
+        
+        var productoAEditar = new Productos
+        {
+            idProducto = productoVM.idProducto,
+            descripcion = productoVM.descripcion,
+            precio = productoVM.precio
+        };
+        _productoRepository.UpdateProducto(id, productoAEditar);
         return RedirectToAction("Index");
     }
 
     [HttpGet]
     public IActionResult Delete(int id)
     {
-        var producto = _productoRepository.GetbyIdProducto(id);
-        return View(producto);
+        var p = _productoRepository.GetbyIdProducto(id);
+        var productoViewModel = new ProductosViewModel(p.idProducto,p.descripcion,p.precio);
+        return View(productoViewModel);
     }
 
     [HttpPost, ActionName("Delete")]

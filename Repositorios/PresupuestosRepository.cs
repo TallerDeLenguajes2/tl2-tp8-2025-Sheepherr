@@ -8,6 +8,10 @@ public class PresupuestosRepository : IPresupuestosRepository
 {
     private string cadenaConexion = "Data Source= Db/Tienda.db";
 
+    public PresupuestosRepository()
+    {
+    }
+
     public void InsertPresupuesto(Presupuestos presupuesto)
     {
         using var conexion = new SqliteConnection(cadenaConexion);

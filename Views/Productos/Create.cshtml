@@ -1,4 +1,4 @@
-@model ClaseMVC.Models.Productos
+@model SistemaVentas.Web.ViewModels.ProductosViewModel
 
 @{
     ViewData["Title"] = "Crear Producto";
@@ -15,11 +15,13 @@
                 <div class="mb-3">
                     <label asp-for="descripcion" class="form-label">Descripción</label>
                     <input asp-for="descripcion" class="form-control" placeholder="Ingrese la descripción del producto" />
+                    <span asp-validation-for="descripcion" class="text-danger"></span>
                 </div>
 
                 <div class="mb-3">
                     <label asp-for="precio" class="form-label">Precio</label>
                     <input asp-for="precio" class="form-control" type="number" placeholder="Ingrese el precio" />
+                    <span asp-validation-for="@Model.precio" class="text-danger"></span>
                 </div>
 
                 <div class="d-flex justify-content-between">
@@ -30,3 +32,7 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+ <partial name="_ValidationScriptsPartial" />
+}

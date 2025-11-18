@@ -21,7 +21,7 @@
 
                 <div class="mb-3">
                     <label asp-for="@Model.FechaCreacion" class="form-label fw-bold">Fecha de Creación</label>
-                    <input asp-for="@Model.FechaCreacion" class="form-control" placeholder="Ingrese la fecha de creación" />
+                    <input asp-for="FechaCreacion" type="date" class="form-control" max="@DateTime.Now.ToString("yyyy-MM-dd")" />
                     <span asp-validation-for="@Model.FechaCreacion" class="text-danger"></span>
                 </div>
 

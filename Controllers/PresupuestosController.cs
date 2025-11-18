@@ -1,31 +1,22 @@
-namespace ProductosController;
-using Microsoft.Extensions.Logging;
-using System.Diagnostics;
+namespace PresupuestosController;
 using Microsoft.AspNetCore.Mvc;
 using ClaseMVC.Models;
 using MVC.Repositorios;
+using SistemaVentas.Web.ViewModels;
 
 public class PresupuestosController: Controller
 {
-    private readonly ILogger<ProductosController> _logger;
-    private readonly PresupuestosRepository _presupuestosRepository;
-    private readonly ProductosRepository _productosRepository;
-
-    public PresupuestosController(ILogger<ProductosController> logger)
-    {
-        _logger = logger;
-        //_presupuestosRepository = presupuestosRepository;
-        _presupuestosRepository = new PresupuestosRepository();
-        _productosRepository = new ProductosRepository();
-    }
+    private readonly PresupuestosRepository _presupuestosRepository = new PresupuestosRepository();
+    private readonly ProductosRepository _productosRepository = new ProductosRepository();
     
     [HttpGet]
     public IActionResult Index()
     {
-        var presupuestos = _presupuestosRepository.GetAllPresupuestos();
-        return View(presupuestos);
+        var presupuestosVM = _presupuestosRepository.GetAllPresupuestos().Select(p => new PresupuestoViewModel(p.IdPresupuesto,p.nombreDestinatario, p.FechaCreacion)).ToList();
+        return View(presupuestosVM);
     }
     [HttpGet]
+    
     public IActionResult Details(int id)
     {
         var presupuesto = _presupuestosRepository.GetbyIdPresupuesto(id);

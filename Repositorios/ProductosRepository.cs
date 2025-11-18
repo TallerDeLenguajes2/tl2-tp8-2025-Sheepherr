@@ -11,6 +11,10 @@ public class ProductosRepository : IProductosRepository
 {
     private string cadenaConexion = "Data Source= Db/Tienda.db";
 
+    public ProductosRepository()
+    {
+    }
+
     public void InsertProducto(Productos producto)
     {
         using var conexion = new SqliteConnection(cadenaConexion);
