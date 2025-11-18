@@ -9,12 +9,14 @@ public class PresupuestosController: Controller
 {
     private readonly ILogger<ProductosController> _logger;
     private readonly PresupuestosRepository _presupuestosRepository;
+    private readonly ProductosRepository _productosRepository;
 
     public PresupuestosController(ILogger<ProductosController> logger)
     {
         _logger = logger;
         //_presupuestosRepository = presupuestosRepository;
         _presupuestosRepository = new PresupuestosRepository();
+        _productosRepository = new ProductosRepository();
     }
     
     [HttpGet]
@@ -27,18 +29,33 @@ public class PresupuestosController: Controller
     public IActionResult Details(int id)
     {
         var presupuesto = _presupuestosRepository.GetbyIdPresupuesto(id);
-        
-
-        if (presupuesto.detalle == null)
-        {
-            TempData["Mensaje"] = "El presupuesto seleccionado no tiene productos asociados.";
-            return RedirectToAction("Index");
-        }
-            
-
+        ViewBag.Productos = _productosRepository.GetAllProductos();
         return View(presupuesto);
 
     }
+    [HttpPost]
+    public IActionResult AgregarDetalle(int idPresupuesto, int idProducto, int cantidad)
+    {
+        _presupuestosRepository.AddDetalle(idPresupuesto, idProducto, cantidad);
+        TempData["Success"] = "Producto agregado correctamente.";
+        return RedirectToAction("Details", new { id = idPresupuesto });
+    }
+
+    [HttpPost]
+    public IActionResult EliminarDetalle(int idPresupuesto, int idProducto)
+    {
+        _presupuestosRepository.DeleteDetails(idPresupuesto,idProducto);
+        TempData["Error"] = "Producto eliminado del presupuesto.";
+        return RedirectToAction("Details", new {id = idPresupuesto});
+    }
+    [HttpPost]
+    public IActionResult ModificarDetalle(int idPresupuesto, int idProducto, int cantidad)
+    {
+        _presupuestosRepository.UpdateDetalles(idPresupuesto, idProducto, cantidad);
+        TempData["Success"] = "Cantidad actualizada correctamente.";
+        return RedirectToAction("Details", new {id = idPresupuesto});
+    }
+    
     [HttpGet]
     public IActionResult Create()
     {
@@ -48,8 +65,10 @@ public class PresupuestosController: Controller
     public IActionResult Create(Presupuestos presupuesto)
     {
         _presupuestosRepository.InsertPresupuesto(presupuesto);
-        return View();
+        
+        return RedirectToAction("Index");
     }
+
     [HttpGet]
     public IActionResult Edit(int id)
     {
@@ -62,8 +81,8 @@ public class PresupuestosController: Controller
     [HttpPost]
     public IActionResult Edit(Presupuestos p)
     {
-        _presupuestosRepository.InsertPresupuesto(p);
-        return View();
+        _presupuestosRepository.UpdatePresupuesto(p);
+        return RedirectToAction("Index");
     }
     [HttpGet]
     public IActionResult Delete(int id)
@@ -77,4 +96,5 @@ public class PresupuestosController: Controller
         _presupuestosRepository.DeletePresupuesto(id);
         return RedirectToAction("Index");
     }
+    
 }

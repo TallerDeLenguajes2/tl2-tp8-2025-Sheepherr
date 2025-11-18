@@ -8,5 +8,8 @@ public interface IPresupuestosRepository
     List<Presupuestos> GetAllPresupuestos();
     Presupuestos GetbyIdPresupuesto(global::System.Int32 id);
     void InsertPresupuesto(Presupuestos presupuesto);
-    void InsertPresupuestoDetalle(global::System.Int32 id, PresupuestoDetalle presupuestoDetalle);
+    void AddDetalle (int idPresupuesto, int idProducto, int cantidad);
+    void UpdatePresupuesto(Presupuestos presupuesto);
+    void UpdateDetalles(int idPresupuesto, int idProducto, int cantidad);
+    void DeleteDetails(int idPresupuesto, int idProducto);    
 }
