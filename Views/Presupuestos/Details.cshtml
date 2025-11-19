@@ -1,4 +1,5 @@
-@model ClaseMVC.Models.Presupuestos
+@using SistemaVentas.Web.ViewModels
+@model PresupuestoViewModel
 
 @{
     ViewData["Title"] = "Detalles del Presupuesto";
@@ -7,12 +8,11 @@
 <div class="container mt-4">
     <h2 class="text-primary mb-4">Detalles del Presupuesto</h2>
 
-    <!-- TARJETA PRINCIPAL -->
     <div class="card shadow-sm border-0 mb-4">
         <div class="card-body">
-            <h5 class="card-title text-dark">Destinatario: @Model.nombreDestinatario</h5>
+            <h5 class="card-title text-dark">Destinatario: @Model.NombreDestinatario</h5>
             <p class="card-text text-muted mb-2">Fecha de creación: @Model.FechaCreacion</p>
-            <p class="card-text text-secondary">ID Presupuesto: @Model.IdPresupuesto</p>
+            <p class="card-text text-secondary">ID Presupuesto: @Model.idPresupuesto</p>
         </div>
     </div>
 
@@ -25,16 +25,16 @@
         <div class="alert alert-danger">@TempData["Error"]</div>
     }
 
-    @if (Model.detalle == null || !Model.detalle.Any())
+    @if (Model.productosVM == null || !Model.productosVM.Any())
     {
         <div class="alert alert-warning" role="alert">
-            El presupuesto elegido le falta el detalle.
+            El presupuesto elegido no tiene Productos cargados.
         </div>
     }
     else
     {
         <h4 class="text-secondary mb-3">Detalles</h4>
-        <table class="table table-striped table-bordered">
+        <table class="table table-striped table-bordered text-center align-middle">
             <thead class="table-light">
                 <tr>
                     <th>Descripción</th>
@@ -45,30 +45,28 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var d in Model.detalle)
+                @foreach (var d in Model.productosVM)
                 {
                     <tr>
-                        <td>@d.producto.descripcion</td>
+                        <td>@d.descripcion</td>
+
                         <td>
-                            <form asp-action="ModificarDetalle" method="post" class="d-flex">
-                                <input type="hidden" name="idPresupuesto" value="@Model.IdPresupuesto" />
-                                <input type="hidden" name="idProducto" value="@d.producto.idProducto" />
-                                <input type="number" class="form-control" name="cantidad"
-                                       min="1" style="width: 70px;" value="@d.cantidad" />
+                            <form asp-action="ModificarDetalle" method="post" class="d-flex justify-content-center">
+                                <input type="hidden" name="idPresupuesto" value="@Model.idPresupuesto" />
+                                <input type="hidden" name="idProducto" value="@d.idProducto" />
+                                <input type="number" class="form-control text-center" name="cantidad" min="1" style="width: 70px;" value="@d.cantidad" />
                                 <button class="btn btn-sm btn-primary ms-2" type="submit">OK</button>
                             </form>
                         </td>
 
-                        <td>@d.producto.precio</td>
-                        <td>@(d.cantidad * d.producto.precio)</td>
+                        <td>@d.precio</td>
+                        <td>@(d.cantidad * d.precio)</td>
 
                         <td>
                             <form asp-action="EliminarDetalle" method="post">
-                                <input type="hidden" name="idPresupuesto" value="@Model.IdPresupuesto" />
-                                <input type="hidden" name="idProducto" value="@d.producto.idProducto" />
-                                <button class="btn btn-sm btn-danger" type="submit">
-                                    Eliminar
-                                </button>
+                                <input type="hidden" name="idPresupuesto" value="@Model.idPresupuesto" />
+                                <input type="hidden" name="idProducto" value="@d.idProducto" />
+                                <button class="btn btn-sm btn-danger" type="submit">Eliminar</button>
                             </form>
                         </td>
                     </tr>
@@ -77,38 +75,15 @@
         </table>
     }
 
-    <hr />
-
-    <h4 class="text-secondary mb-3">Agregar producto al presupuesto</h4>
-
-    <form asp-action="AgregarDetalle" method="post" class="row g-3">
-        <input type="hidden" name="idPresupuesto" value="@Model.IdPresupuesto" />
-
-        <div class="col-md-6">
-            <label class="form-label">Producto</label>
-            <select class="form-select" name="idProducto" required>
-                <option value="">Seleccione un producto...</option>
-
-                @foreach (var p in ViewBag.Productos)
-                {
-                    <option value="@p.idProducto">@p.descripcion</option>
-                }
-            </select>
-        </div>
-
-        <div class="col-md-3">
-            <label class="form-label">Cantidad</label>
-            <input type="number" class="form-control" name="cantidad" min="1" required />
-        </div>
-
-        <div class="col-md-3 d-flex align-items-end">
-            <button type="submit" class="btn btn-success w-100">Agregar</button>
-        </div>
-    </form>
-
-    <div class="mt-4">
+    <div class="nt-4 d-flex justify-content-between">
         <a asp-controller="Presupuestos" asp-action="Index" class="btn btn-secondary">
             <i class="bi bi-arrow-left"></i> Volver al listado
+        </a>
+        <a asp-controller="Presupuestos"
+            asp-action="AgregarProducto"
+            asp-route-id="@Model.idPresupuesto"
+            class="btn btn-success">
+            <i class="bi bi-plus-circle"></i> Agregar producto
         </a>
     </div>
 </div>

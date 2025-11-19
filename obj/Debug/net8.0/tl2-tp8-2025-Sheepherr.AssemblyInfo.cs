@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("tl2-tp8-2025-Sheepherr")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2c475777879cba1d441a3b752c20eba10d3baf93")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e9cc34cb48d381ba72492d60a4f2d6f5e9e902c2")]
 [assembly: System.Reflection.AssemblyProductAttribute("tl2-tp8-2025-Sheepherr")]
 [assembly: System.Reflection.AssemblyTitleAttribute("tl2-tp8-2025-Sheepherr")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
