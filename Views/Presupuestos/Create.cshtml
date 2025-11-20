@@ -1,4 +1,5 @@
-@model ClaseMVC.Models.Presupuestos
+@using SistemaVentas.Web.ViewModels
+@model PresupuestoViewModel
 
 @{
     ViewData["Title"] = "Crear Presupuesto";
@@ -12,8 +13,8 @@
         <div class="card-body">
             <form asp-action="Create" method="post">
                 <div class="mb-3">
-                    <label asp-for="nombreDestinatario" class="form-label">Nombre destinatario</label>
-                    <input asp-for="nombreDestinatario" class="form-control" />
+                    <label asp-for="NombreDestinatario" class="form-label">Nombre destinatario</label>
+                    <input asp-for="NombreDestinatario" class="form-control" />
                 </div>
 
                 <div class="mb-3">

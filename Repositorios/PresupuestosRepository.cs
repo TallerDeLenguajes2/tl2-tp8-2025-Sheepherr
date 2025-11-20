@@ -24,8 +24,7 @@ public class PresupuestosRepository : IPresupuestosRepository
 
         comando.ExecuteNonQuery();
     }
-    
-    public List<Presupuestos> GetAllPresupuestos()
+    public List<Presupuestos> GetAllPresupuestos()  
     {
         List<Presupuestos> presupuestos = new List<Presupuestos>();
         string query = "SELECT * FROM Presupuestos WHERE Activo = 1";
@@ -50,7 +49,6 @@ public class PresupuestosRepository : IPresupuestosRepository
 
         return presupuestos;
     }
-    
     public Presupuestos GetbyIdPresupuesto(int id)
     {
         Presupuestos presupuesto = null;

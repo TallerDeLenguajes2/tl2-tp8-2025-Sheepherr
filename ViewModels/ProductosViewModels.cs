@@ -12,7 +12,6 @@ public class ProductosViewModel
     [Range(0.01, double.MaxValue, ErrorMessage = "El precio debe ser un valor positivo.")]
     public decimal precio { get; set; }
     public int cantidad {get; set;}
-    public List<ProductosViewModel> productos {get; set;}
     public ProductosViewModel(int idprodu, string desc, decimal prec)
     {
         this.idProducto = idprodu;

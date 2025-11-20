@@ -4,12 +4,23 @@ using ClaseMVC.Models;
 using MVC.Repositorios;
 using SistemaVentas.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using MVC.Interfaces;
 
 public class PresupuestosController: Controller
 {
-    private readonly PresupuestosRepository _presupuestosRepository = new PresupuestosRepository();
-    private readonly ProductosRepository _productosRepository = new ProductosRepository();
-    
+    private readonly IPresupuestosRepository _presupuestosRepository;
+    private readonly IProductosRepository _productosRepository;
+    private readonly IAuthenticationService _authService;
+
+    public PresupuestosController(
+        IPresupuestosRepository presupuestosRepository,
+        IProductosRepository productosRepository,
+        IAuthenticationService authService)
+    {
+        _presupuestosRepository = presupuestosRepository;
+        _productosRepository = productosRepository;
+        _authService = authService;
+    }
     [HttpGet]
     public IActionResult Index()
     {
@@ -62,6 +73,17 @@ public class PresupuestosController: Controller
 
             return View(model);
         }
+        var presupuesto = _presupuestosRepository.GetbyIdPresupuesto(model.idPresupuesto);
+
+        if (presupuesto.detalle.Any(d => d.producto.idProducto == model.idProducto))
+        {
+            ModelState.AddModelError("idProducto", "Este producto ya está incluido en el presupuesto.");
+        
+            var productos = _productosRepository.GetAllProductos();
+            model.ListaProductos = new SelectList(productos, "idProducto", "descripcion");
+
+            return View(model);
+        }
 
         _presupuestosRepository.AddDetalle(model.idPresupuesto, model.idProducto, model.cantidad);
         TempData["Success"] = "Producto agregado correctamente.";
@@ -89,8 +111,14 @@ public class PresupuestosController: Controller
         return View();
     }
     [HttpPost]
-    public IActionResult Create(Presupuestos presupuesto)
+    public IActionResult Create(PresupuestoViewModel presupuestoVM)
     {
+        var presupuesto = new Presupuestos
+        {
+            nombreDestinatario = presupuestoVM.NombreDestinatario,
+            FechaCreacion = presupuestoVM.FechaCreacion,
+        };
+
         _presupuestosRepository.InsertPresupuesto(presupuesto);
         
         return RedirectToAction("Index");
@@ -102,12 +130,23 @@ public class PresupuestosController: Controller
         var presupuesto = _presupuestosRepository.GetbyIdPresupuesto(id);
         if (presupuesto == null) 
             return NotFound();
-
-        return View(presupuesto);
+        var presupuestoVM = new PresupuestoViewModel
+        {
+            NombreDestinatario = presupuesto.nombreDestinatario,
+            FechaCreacion = presupuesto.FechaCreacion,
+            idPresupuesto = presupuesto.IdPresupuesto            
+        };
+        return View(presupuestoVM);
     }
     [HttpPost]
-    public IActionResult Edit(Presupuestos p)
+    public IActionResult Edit(PresupuestoViewModel presu)
     {
+        var p = new Presupuestos
+        {
+            IdPresupuesto = presu.idPresupuesto,
+            nombreDestinatario = presu.NombreDestinatario,
+            FechaCreacion = presu.FechaCreacion
+        };
         _presupuestosRepository.UpdatePresupuesto(p);
         return RedirectToAction("Index");
     }
@@ -115,7 +154,26 @@ public class PresupuestosController: Controller
     public IActionResult Delete(int id)
     {
         var presupuesto = _presupuestosRepository.GetbyIdPresupuesto(id);
-        return View(presupuesto);
+        List<ProductosViewModel> productosVM = [];
+        foreach (var d in presupuesto.detalle)
+        {
+            var p = new ProductosViewModel
+            {
+                idProducto = d.producto.idProducto,
+                precio = d.producto.precio,
+                descripcion = d.producto.descripcion,
+                cantidad = d.cantidad
+            };
+            productosVM.Add(p);
+        }
+        var presupuestoVM = new PresupuestoViewModel
+        {
+            idPresupuesto = presupuesto.IdPresupuesto,
+            NombreDestinatario = presupuesto.nombreDestinatario,
+            FechaCreacion = presupuesto.FechaCreacion,
+            productosVM = productosVM
+        };
+        return View(presupuestoVM);
     }
     [HttpPost, ActionName("Delete")]
     public IActionResult DeleteConfirmed(int id)

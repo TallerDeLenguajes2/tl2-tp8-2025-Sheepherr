@@ -4,10 +4,18 @@ using ClaseMVC.Models;
 using MVC.Repositorios;
 using SistemaVentas.Web.ViewModels;
 using System.ComponentModel;
+using MVC.Interfaces;
 
 public class ProductosController: Controller
 {
-    private readonly ProductosRepository _productoRepository = new ProductosRepository();
+    private readonly IProductosRepository _productoRepository;
+    private readonly IAuthenticationService _authService;
+
+    public ProductosController(IProductosRepository productoRepository, IAuthenticationService authService)
+    {
+        _productoRepository = productoRepository;
+        _authService = authService;
+    }
     
     [HttpGet]
     public IActionResult Index()
